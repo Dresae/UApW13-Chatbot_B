@@ -96,3 +96,12 @@ messageInput.addEventListener('keypress', (e) => {
         }
     }
 });
+
+// Close chatbot when clicking outside
+document.addEventListener('click', (e) => {
+    if (!chatbot.contains(e.target) && !chatbotIcon.contains(e.target) && isOpen) {
+        isOpen = false;
+        chatbot.classList.remove('active');
+        chatbotIcon.style.opacity = '1';
+    }
+});
