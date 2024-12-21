@@ -97,3 +97,24 @@ body {
     gap: 15px;
 }
 
+.message {
+    max-width: 80%;
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.user-message {
+    align-self: flex-end;
+    background: var(--primary-color, #8A2BE2);
+    color: #fff;
+    border-radius: 15px 15px 0 15px;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 15px 15px 15px 0;
+}
