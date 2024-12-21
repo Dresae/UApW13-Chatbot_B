@@ -76,3 +76,23 @@ async function sendMessage(message) {
         chatBody.scrollTop = chatBody.scrollHeight;
     }
 }
+
+// Handle send button click
+sendButton.addEventListener('click', () => {
+    const message = messageInput.value.trim();
+    if (message) {
+        sendMessage(message);
+        messageInput.value = '';
+    }
+});
+
+// Handle enter key
+messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const message = messageInput.value.trim();
+        if (message) {
+            sendMessage(message);
+            messageInput.value = '';
+        }
+    }
+});
