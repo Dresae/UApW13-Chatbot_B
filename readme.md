@@ -1,10 +1,10 @@
-#  :bike: Web App - Chatbot UI with AI API integration 
+#  :bike: Web App - Chatbot UI with AI integration 
 
 ## :scroll: Overview 
 Modern Chatbot assistant with floating icon and Google Gemini 1.5 API integration 
 
-![screengif](pics/screensgif1.gif)
-![screengif](pics/screensgif2.gif)
+![screenshot](pics/screengif1.gif)
+![screenshot](pics/screengif2.gif)
 
 ***
 ***
