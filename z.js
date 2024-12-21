@@ -20,3 +20,59 @@ chatbotIcon.addEventListener('click', () => {
         chatbotIcon.style.opacity = '1';
     }
 });
+
+// Send message function
+async function sendMessage(message) {
+    // Add user message to chat
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.className = 'message user-message';
+    userMessageDiv.textContent = message;
+    chatBody.appendChild(userMessageDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Show typing indicator
+    typingIndicator.classList.add('active');
+
+    // Prepare HTTP request body
+    const requestBody = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            contents: [{
+                parts:[{text: message}]
+            }]
+        })
+    }
+
+    try {
+        // Fetch bot response
+        const response = await fetch(API_URL, requestBody);
+        const data = await response.json();
+        
+        // Hide typing indicator
+        typingIndicator.classList.remove('active');
+
+        // Extract and dispay bot's response text
+        const apiResponseText = data.candidates[0].content.parts[0].text.trim();
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.className = 'message bot-message';
+        botMessageDiv.textContent = apiResponseText;
+
+        chatBody.appendChild(botMessageDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+
+    } catch (error) {
+        console.error('Error:', error);
+        typingIndicator.classList.remove('active');
+        
+        // Add error message to chat
+        const errorMessageDiv = document.createElement('div');
+        errorMessageDiv.className = 'message bot-message';
+        errorMessageDiv.textContent = 'Sorry, I encountered an error. Please try again.';
+        chatBody.appendChild(errorMessageDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+}
